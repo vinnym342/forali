@@ -1,0 +1,14 @@
+<% @search_results.each do |result| %>
+		<div class="organiser">
+<h3><%=result.name%></h3> 
+<br>
+	<%= result.description %>
+<br>
+<%= link_to "View",organiser_path(result) %>
+<% if OrganiserFollow.find_by(user: current_user, organiser: result).present? %>
+Unfollow
+<% else %>
+Follow
+<% end %>
+</div>
+<% end %>

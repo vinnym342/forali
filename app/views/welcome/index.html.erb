@@ -1,0 +1,7 @@
+<h1>Welcome#index</h1>
+<%= form_tag search_organisers_path,method: :get,:multipart => true do %>
+<%= text_field_tag :search %>
+<%# button_tag '<i class="fa fa-search" aria-hidden="true"></i>'.html_safe %>
+<%= submit_tag 'Submit me!'%>
+<% end %>
+

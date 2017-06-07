@@ -1,0 +1,2 @@
+class EventPage < ApplicationRecord
+end
