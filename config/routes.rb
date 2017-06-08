@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :events
   resources :organisers do
-	resources :organiser_like	
-    get 'search',to: 'organisers#search', on: :collection
+  resources :organiser_follows, on: :member, only: [:new],as: 'follow'
+    get 'search',to: 'organisers#search', on: :collection 
   end
   resources :event_pages, except: [ :new,:create ] do
   end

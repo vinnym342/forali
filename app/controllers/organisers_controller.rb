@@ -7,7 +7,9 @@ class OrganisersController < ApplicationController
     @organisers = Organiser.all
   end
   def search
-    if params[:search_name].present?
+	session[:previous_page]= request.env['HTTP_REFERER'] || products_url
+	@search_params = params[:search]
+    if @search_params.present?
     @search_results = Organiser.where("name LIKE '%#{params[:search_name]}'")
     else
     @search_results = Organiser.all

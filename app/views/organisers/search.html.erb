@@ -5,10 +5,12 @@
 	<%= result.description %>
 <br>
 <%= link_to "View",organiser_path(result) %>
+<br>
+
 <% if OrganiserFollow.find_by(user: current_user, organiser: result).present? %>
-Unfollow
+<%= link_to "Unfollow",new_organiser_follow_path(result.id), search: @search_params %>
 <% else %>
-Follow
+<%= link_to "Follow",new_organiser_follow_path(result.id), search: @search_params %>
 <% end %>
 </div>
 <% end %>
