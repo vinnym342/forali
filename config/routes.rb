@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :events,except: [ :new,:create ], on: :member 
+  resources :events,except: [ :new,:create ], on: :member do
+  resources :event_places,only: [:new],on: :member,as: 'place'
+  end
   resources :organisers do
   resources :organiser_follows, on: :member, only: [:new],as: 'follow'
     get 'search',to: 'organisers#search', on: :collection 

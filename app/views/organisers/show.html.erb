@@ -9,7 +9,12 @@
   <strong>Description:</strong>
   <%= @organiser.description %>
 </p>
-Owner:<%= @organiser.owner_id %>
+<br>
+<% if OrganiserFollow.find_by(user: current_user, organiser: @organiser).present? %>
+<%= link_to "Unfollow",new_organiser_follow_path(@organiser.id), search: @search_params %>
+<% else %>
+<%= link_to "Follow",new_organiser_follow_path(@organiser.id), search: @search_params %>
+<% end %>
 <br>
 <% if @organiser.owner_id == current_user.id %>
 	<%= link_to "Edit Page",edit_organiser_path(@organiser) %>

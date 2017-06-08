@@ -25,5 +25,11 @@
   <%= @event.max_participants %>
 </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Edit', edit_event_path(@event) if @event.organiser.owner_id == current_user.id%> 
 <%= link_to 'Back', organiser_path(@event.organiser_id) %>
+<% if EventPlace.find_by(user: current_user, event: @event).present? %>
+<%= link_to "Withdraw",new_event_place_path(@event.id), search: @search_params %>
+<% else %>
+<%= link_to "Join",new_event_place_path(@event.id), search: @search_params %>
+<% end %>
+
