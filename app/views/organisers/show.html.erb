@@ -9,6 +9,20 @@
   <strong>Description:</strong>
   <%= @organiser.description %>
 </p>
-
+Owner:<%= @organiser.owner_id %>
+<br>
+<% if @organiser.owner_id == current_user.id %>
+	<%= link_to "Edit Page",edit_organiser_path(@organiser) %>
+	<%= link_to "Create Event", new_organiser_event_path(@organiser)%>
+<% end %>
 <%= link_to 'Edit', edit_organiser_path(@organiser) %> |
 <%= link_to 'Back', organisers_path %>
+<% @organiser_events.each do |event| %>
+		<div class="event">
+		        <h2><%= event.name %></h2>
+		        <p><%= event.description %></p>
+		        <p><%= event.time.strftime("%H:%M %m/%d") %></p>
+		        <p>Max People:<%= event.max_participants %></p>
+<%= link_to 'View', event_path(event) %> 
+		</div>
+<% end %>

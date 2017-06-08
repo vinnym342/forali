@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  resources :events
+  resources :events,except: [ :new,:create ], on: :member 
   resources :organisers do
   resources :organiser_follows, on: :member, only: [:new],as: 'follow'
     get 'search',to: 'organisers#search', on: :collection 
-  end
-  resources :event_pages, except: [ :new,:create ] do
+  	resources :events, only: [ :new,:create ], on: :member 
   end
   get 'welcome/index'
 

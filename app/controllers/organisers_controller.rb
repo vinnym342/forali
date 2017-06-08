@@ -19,6 +19,7 @@ class OrganisersController < ApplicationController
   # GET /organisers/1
   # GET /organisers/1.json
   def show
+	@organiser_events = @organiser.event
   end
 
   # GET /organisers/new
